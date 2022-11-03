@@ -1,8 +1,9 @@
 
 <h1 align="center">M Akbar Maulana</h1>
 
----
+<div align="center">
+    <span><a href="https://makbarmaulana.github.io/">M Akbar Maulana</a>&#10240; &#10240;</span>
+    <span>&middot; Github <a href="https://github.com/makbarmaulana/">@makbarmaulana</a>&#10240; &#10240;</span>
+    <span>&middot; LinkedIn <a href="https://www.linkedin.com/in/makbarm/">@makbarm</a>&#10240; &#10240;</span>
+</div>
 
-> [https://makbarmaulana.github.io/](https://makbarmaulana.github.io/) &nbsp;&middot;&nbsp;
-> GitHub [@makbarmaulana](https://github.com/makbarmaulana) &nbsp;&middot;&nbsp;
-> LinkedIn [@makbarm](https://www.linkedin.com/in/makbarm/
