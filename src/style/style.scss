@@ -1,5 +1,30 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
 
+$color-grad: linear-gradient(62deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+$white: #FFF;
+
+@mixin cursor-animation {
+	&:hover ~ {
+		.cursor {
+			animation: blinkCursor 1s ease infinite;
+			opacity: 1;
+		}
+
+		.inner-cursor {
+			transform: translate(-50%, -50%) scale(1.5);
+		}
+	}
+}
+
+@mixin cursor-position {
+	position: fixed;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	pointer-events: none;
+	opacity: 0;
+}
+
+
 *,
 *::before,
 *::after {
@@ -14,7 +39,7 @@ html,
 body {
 	height: 100vh;
 	position: relative;
-	background: linear-gradient(62deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background: $color-grad;
 	animation: gradient 15s ease infinite;
 	background-size: 400% 400%;
 	cursor: none;
@@ -36,7 +61,7 @@ body {
 
 	&::before {
 		content: "";
-		background: #fff;
+		background: $white;
 		width: 100%;
 		height: 0%;
 		position: absolute;
@@ -45,30 +70,50 @@ body {
 		transition: 3s cubic-bezier(0.22, 0.73, 0.92, 0.48);
 		animation: splash 3s cubic-bezier(0.8, 0.2, 0.2, 0.8) forwards;
 	}
-}
 
-span {
-	display: inline-block;
-	font-weight: bold;
-	text-transform: uppercase;
-	color: #fff;
-	filter: blur(3px);
-	animation: blurMe 1.4s ease-in-out forwards;
-	opacity: 0;
-	transition: 250ms ease-in;
-	&:hover {
-		transform: translateY(-8px);
+	.name {
+		font-size: clamp(1.2rem, 4vw, 2.3rem);
+		letter-spacing: clamp(0.8rem, 2.8vw, 4.5rem);
+		@include cursor-animation();
 	}
-}
 
-.name {
-	font-size: clamp(1.2rem, 4vw, 2.5rem);
-	letter-spacing: clamp(0.8rem, 2.5vw, 4.5rem);
-}
+	.title {
+		font-size: clamp(0.7rem, 2vw, 1.2rem);
+		letter-spacing: clamp(0.7rem, 2vw, 1.5rem);
+		@include cursor-animation();
+	}
 
-.title {
-	font-size: clamp(0.7rem, 2vw, 1.2rem);
-	letter-spacing: clamp(0.7rem, 2vw, 1.2rem);
+	span {
+		display: inline-block;
+		font-weight: bold;
+		text-transform: uppercase;
+		color: $white;
+		opacity: 0;
+		transition: 250ms ease-in;
+		animation: blurMe 1.4s ease-in-out forwards;
+
+		&:hover {
+			transform: translateY(-8px);
+		}
+	}
+
+	.cursor {
+		@include cursor-position();
+		border: 1px solid $white;
+		padding: .7rem;
+		mix-blend-mode: difference;
+		transition: transform 250ms ease, left 60ms linear, top 60ms linear;
+	}
+
+	.inner-cursor {
+		@include cursor-position();
+		padding: .7rem;
+		mix-blend-mode: difference;
+		transform-origin: center;
+		transition: transform 250ms ease, left 60ms linear, top 60ms linear;
+		animation: revealCursor 1s ease 5s forwards;
+		background-color: $white;
+	}
 }
 
 @for $i from 1 through 6 {
@@ -77,59 +122,30 @@ span {
 	}
 }
 
-.cursor {
-	position: fixed;
-	transform: translate(-50%, -50%);
-	border: 1px solid #fff;
-	padding: 1rem;
-	border-radius: 50%;
-	pointer-events: none;
-	mix-blend-mode: difference;
-	opacity: 0;
-	transition: transform 250ms ease, left 60ms linear, top 60ms linear;
-}
-
-.inner-cursor {
-	position: fixed;
-	transform: translate(-50%, -50%);
-	background-color: #fff;
-	padding: 1rem;
-	border-radius: 50%;
-	pointer-events: none;
-	opacity: 0;
-	mix-blend-mode: difference;
-	transform-origin: center;
-	transition: transform 250ms ease, left 60ms linear, top 60ms linear;
-	animation: revealCursor 1s ease 5s forwards;
-}
-
-span:hover ~ .cursor {
-	animation: blinkCursor 1s ease infinite;
-	opacity: 1;
-}
-
-span:hover ~ .inner-cursor {
-	transform: translate(-50%, -50%) scale(1.5);
-}
 
 @-webkit-keyframes gradient {
 	0% {
 		background-position: 0 50%;
 	}
+
 	50% {
 		background-position: 100% 50%;
 	}
+
 	100% {
 		background-position: 0% 50%;
 	}
 }
+
 @keyframes gradient {
 	0% {
 		background-position: 0 50%;
 	}
+
 	50% {
 		background-position: 100% 50%;
 	}
+
 	100% {
 		background-position: 0% 50%;
 	}
